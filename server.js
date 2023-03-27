@@ -19,6 +19,13 @@ const port = process.env.PORT || 3000;
   
 	try {
 	  results = await fetchApiData(species);
+	  if (results.length === 0) {
+		throw "API returned an empty array";
+	  }
+	  res.send({
+		fromCache: false,
+		data: results,
+	  });
 	} catch (error) {
 	  console.error(error);
 	  res.status(404).send("Data unavailable");
