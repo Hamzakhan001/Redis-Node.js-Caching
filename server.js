@@ -38,7 +38,7 @@ let isCached = false;
 		if (results.length === 0) {
 		  throw "API returned an empty array";
 		}
-		
+		await redisClient.set(species, JSON.stringify(results));
 	 }
 	 res.send({
 		fromCache: false,
